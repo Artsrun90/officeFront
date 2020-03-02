@@ -1,0 +1,138 @@
+*{
+	transition: all 0.5s;
+}
+
+.sidemenu {
+	height: 100%;
+	width: 200px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #313640;
+	overflow-x: hidden;
+	padding-top: 0px;
+  }
+  
+
+  .sidemenu li {
+	padding: 6px 8px 6px 16px;
+	text-decoration: none;
+	font-size: 22px;
+	color: #d8d8d8;
+	display: block;
+	border: none;
+	background: none;
+	width: 100%;
+	text-align: left;
+	cursor: pointer;
+	outline: none;
+	
+  }
+
+  .sidemenu li:hover {
+	color: #f1f1f1;
+	background-color: dimgray;
+  }
+
+  .sidemenu h2 {
+	  color: floralwhite;
+	  text-align: center;
+	  font-size: 30px;
+  }
+
+  .sidemenu div {
+	background-color: gray;
+	padding-top: 20px;
+	height: 80px;
+  }
+
+.myform input{
+	color: rgb(105, 105, 105);
+	width: 20%;
+	background-color: rgb(255, 255, 255);
+	margin: 10px 2px;
+	padding: 10px 20px;
+	border:none;
+	box-shadow: 1px 1px 1px 1px rgba(5, 1, 1, 0.555);
+}
+
+.myform input:hover{
+	box-shadow: 1px 1px 1px 1px #535353;
+}
+
+.myform{
+	width: 800px;
+	height: 390px;
+	margin-left: 300px;
+	margin-top: 8px;
+	/* margin-left: auto; */
+	/* margin: 0 auto; */
+	background-color: rgb(153, 153, 153);
+	padding: 40px;
+	color: #A22125;
+}
+.myform label{
+	color: rgb(255, 255, 255);
+	display: block;
+}
+input[type="submit"]{
+	width: 200px;
+	background-color: rgb(27, 27, 27);
+	font-weight: bold;
+	/* width: 100%; */
+	color: aliceblue;
+	/* box-shadow: 1px 1px 3px 2px #C91612; */
+	cursor: pointer;
+}
+input[type="submit"]:hover{
+	/* background-color:rgb(167, 159, 159); */
+	color:white;
+	transform: scale(1.04);
+}
+/* input::placeholder{
+	color: rgb(160, 160, 160);
+} */
+
+.text{
+	color: rgb(105, 105, 105);
+	width: 20%;
+	background-color: rgb(255, 255, 255);
+	margin: 10px 2px;
+	padding: 10px 20px;
+	border:none;
+	box-shadow: 1px 1px 1px 1px rgba(5, 1, 1, 0.555);
+}
+
+.div{
+	background-color: rgb(245, 245, 245);
+	height: 600px;
+}
+
+.div h1 {
+	margin-left: 700px;
+	color: black;	
+}
+
+ .button {
+	margin-left: 340px;
+
+}
+ 
+.butt{
+	
+		width: 200px;
+		background-color: rgb(27, 27, 27);
+		font-weight: bold;
+		/* width: 100%; */
+		color: aliceblue;
+		/* box-shadow: 1px 1px 3px 2px #C91612; */
+		cursor: pointer;
+		padding: 10px;
+	
+}
+.butt:hover{
+	/* background-color:rgb(167, 159, 159); */
+	color:white;
+	transform: scale(1.04);
+}
