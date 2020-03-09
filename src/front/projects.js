@@ -4,8 +4,7 @@ import  s from './style.module.css';
 class Projects extends React.Component {
     render(){
         return(
-            <div className={s.div}>
-                
+            <div className={s.div}>                
             <h1>Projects</h1>
             </div>
         )

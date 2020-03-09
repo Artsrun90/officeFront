@@ -10,7 +10,6 @@ class UserGetAll extends React.Component {
         handleSubmit = (event) => {
             event.preventDefault();
         axios.get('http://localhost:3001/users/getAllUsers')
-
           .then(res => {
             console.log(res)
             const users = res.data;

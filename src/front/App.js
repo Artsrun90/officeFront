@@ -4,7 +4,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Menu from './menu';
 import Projects from './projects';
 import Rolls from './rolls';
-import Тasks from './tasks'
+import ТaskGetAll from './taskGetAll'
+import Тaskcreate from './taskscreate'
+import ТaskUpdate from './tasksUpdate'
 import Users from './users';
 
 
@@ -18,7 +20,9 @@ class App extends React.Component {
                 <Route path='/' exact component={Projects}/>
                 <Route path='/projects' component={Projects}/>
                 <Route path='/rolls' component={Rolls}/>
-                <Route path='/tasks' component={Тasks}/>
+                <Route path='/tasks/all' component={ТaskGetAll}/>
+                <Route path='/tasks/create' component={Тaskcreate}/>
+                <Route path='/tasks/update' component={ТaskUpdate}/>
                 <Route path='/users' component={Users}/>
             </Switch>                                
         </Router>            
