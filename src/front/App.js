@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Menu from './menu';
 import Projects from './projects';
 import Rolls from './rolls';
-import ТaskGetAll from './taskGetAll'
-import Тaskcreate from './taskscreate'
-import ТaskUpdate from './tasksUpdate'
+import ТaskGetAll from './tasks/taskGetAll'
+import Тaskcreate from './tasks/taskscreate'
+import ТaskUpdate from './tasks/tasksUpdate'
 import Users from './users';
 
 

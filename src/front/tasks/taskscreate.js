@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import  s from './style.module.css'
+import  s from '../style.module.css'
 
-class TasksUpdate extends React.Component {
+class TasksCreate extends React.Component {
     state = {         
         taskName: null,
         taskDescription: null,
@@ -40,7 +40,7 @@ class TasksUpdate extends React.Component {
         console.log(this.state.err)    
       const form = event.target;
         const tasks = { taskName:this.state.taskName, taskDescription: this.state.taskDescription, project_id: this.state.project_id}
-        axios.patch(
+        axios.post(
           `http://localhost:3001/tasks`, {task: tasks}) 
 
           .then(response =>{ 
@@ -66,7 +66,7 @@ class TasksUpdate extends React.Component {
       render() {       
         return (
           <form className={s.myform} onSubmit={this.handleSubmit.bind(this)}>
-            <h1 style={{color:"#363B45"}}>Update task</h1>
+            <h1 style={{color:"#363B45"}}>Create new task</h1>
             <div>
             <label htmlFor="taskName">taskName</label>
             <input 
@@ -99,10 +99,10 @@ class TasksUpdate extends React.Component {
             <p>{this.state.err}</p>
             <input 
                 type="submit"
-                value="Update"
+                value="Create"
                 />
           </form>
         );
       }
     }
-    export default TasksUpdate;
+    export default TasksCreate;
