@@ -1,24 +1,10 @@
-import React , {Component} from 'react'
+import React , {Component} from 'react';
 import  s from '../style.module.css';
 import  d from './taskGetAll.module.css';
 
-class TasksPagin extends Component {
-        
-    state = { 
-        curnt: []
-    };
-    
-    // console.log("s2222222222"+ this.props.tasks)
+class TasksPagin extends Component {        
 
-    UNSAFE_componentDidUpdate(){
-        console.log("s2222222222"+ this.props.tasks)
-        
-       this.setState({curnt : this.props.tasks})
-    }
-    render() {
-
-        console.log("sjadh"+this.state.curnt)
-        
+    render() {        
         return (
             <div style={{marginLeft:"300px"}}>
                  <table className = {d.customers} > 
@@ -26,15 +12,15 @@ class TasksPagin extends Component {
               <th>taskName</th>
               <th>taskDescription</th>
               </tr>
-            { this.state.curnt.map(tasks =>
+            { this.props.tasks.map(tasks =>
              
-             <tr>
+            <tr>
               <td>{tasks.taskName}</td>
               <td>{tasks.taskDescription}</td>
-              </tr>
+            </tr>
             
             )}
-            {console.log("tasksProps:"+this.props)}
+            {/* {console.log("tasksProps:"+this.props)} */}
               </table>
             </div>
         );

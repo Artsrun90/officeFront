@@ -1,0 +1,70 @@
+.customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .customers td, .customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .customers tr:nth-child(even){background-color: #f2f2f2;}
+  
+  .customers tr:hover {background-color: #ddd;}
+  
+  .customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgb(96, 141, 209);
+    color: white;
+  }
+  .hidden {
+    visibility: hidden;
+  }
+
+
+  .myform input{
+	color: rgb(105, 105, 105);
+	width: 20%;
+	background-color: rgb(255, 255, 255);
+	margin: 10px 2px;
+	padding: 10px 20px;
+	border:none;
+	box-shadow: 1px 1px 1px 1px rgba(5, 1, 1, 0.555);
+}
+
+.myform input:hover{
+	box-shadow: 1px 1px 1px 1px #535353;
+}
+
+.myform{
+	width: 800px;
+	height: 390px;
+	margin-left: 300px;
+	margin-top: 8px;
+	/* margin-left: auto; */
+	/* margin: 0 auto; */
+	background-color: rgb(153, 153, 153);
+	padding: 40px;
+	color: #A22125;
+}
+.myform label{
+	color: rgb(255, 255, 255);
+	display: block;
+}
+input[type="submit"]{
+	width: 200px;
+	background-color: rgb(27, 27, 27);
+	font-weight: bold;
+	/* width: 100%; */
+	color: aliceblue;
+	/* box-shadow: 1px 1px 3px 2px #C91612; */
+	cursor: pointer;
+}
+input[type="submit"]:hover{
+	/* background-color:rgb(167, 159, 159); */
+	color:white;
+	transform: scale(1.04);
+}

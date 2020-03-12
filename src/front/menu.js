@@ -123,7 +123,7 @@ showUser(event) {
                     </div>)
                     :(null)}
 
-                    <Link to='/rolls' style={{textDecoration:"none"}} onClick={this.showRole.bind(this)}>
+                    <Link to='/roles' style={{textDecoration:"none"}} onClick={this.showRole.bind(this)}>
                         <li><IoIosContact/> Roles {this.state.iconRole}</li>
                     </Link>
 
@@ -131,23 +131,23 @@ showUser(event) {
                     ?
                     (<div style={{marginLeft:"30px", backgroundColor: "#474C56"}}>
 
-                    <Link to='/projects/all' style={{textDecoration:"none"}}>
+                    <Link to='/roles/all' style={{textDecoration:"none"}}>
                         <li style={{fontSize:"20px"}}>- All</li>
                     </Link>
 
-                    <Link to='/projects/find' style={{textDecoration:"none"}}>
+                    <Link to='/roles/find' style={{textDecoration:"none"}}>
                         <li style={{fontSize:"20px"}}>- Find</li>
                     </Link>
 
-                    <Link to='/projects/create' style={{textDecoration:"none"}}>
+                    <Link to='/roles/create' style={{textDecoration:"none"}}>
                         <li style={{fontSize:"20px"}}>- Create</li>
                     </Link>
 
-                    <Link to='/projects/update' style={{textDecoration:"none"}}>
+                    <Link to='/roles/update' style={{textDecoration:"none"}}>
                         <li style={{fontSize:"20px"}}>- Update</li>
                     </Link>
 
-                    <Link to='/projects/delete' style={{textDecoration:"none"}}>
+                    <Link to='/roles/delete' style={{textDecoration:"none"}}>
                         <li style={{fontSize:"20px"}}>- Delete</li>
                     </Link>
 
@@ -179,7 +179,7 @@ showUser(event) {
                         <li style={{fontSize:"20px"}}>- Update</li>
                     </Link>
 
-                    <Link to='/projects/delete' style={{textDecoration:"none"}}>
+                    <Link to='/tasks/delete' style={{textDecoration:"none"}}>
                         <li style={{fontSize:"20px"}}>- Delete</li>
                     </Link>
 

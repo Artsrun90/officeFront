@@ -3,7 +3,8 @@ import axios from 'axios';
 import  s from '../style.module.css'
 
 class TasksUpdate extends React.Component {
-    state = {         
+    state = {      
+        taskID:null,   
         taskName: null,
         taskDescription: null,
         project_id: null,
@@ -16,6 +17,9 @@ class TasksUpdate extends React.Component {
         let e = event.target.name;
         let value = event.target.value;
         switch (e) {
+          case "taskID":
+                this.setState({taskID:value})
+                break;
           case "taskName":
                 this.setState({taskName:value})
                 break;
@@ -41,11 +45,11 @@ class TasksUpdate extends React.Component {
       const form = event.target;
         const tasks = { taskName:this.state.taskName, taskDescription: this.state.taskDescription, project_id: this.state.project_id}
         axios.patch(
-          `http://localhost:3001/tasks`, {task: tasks}) 
+          `http://localhost:3001/tasks/${this.state.taskID}`, {task: tasks}) 
 
           .then(response =>{ 
             console.log(response)
-            if(response.status === 201){ 
+            if(response.status === 200){ 
             this.setState({chek:true})
             console.log(this.state.chek)  
             } else{
@@ -67,6 +71,15 @@ class TasksUpdate extends React.Component {
         return (
           <form className={s.myform} onSubmit={this.handleSubmit.bind(this)}>
             <h1 style={{color:"#363B45"}}>Update task</h1>
+            <div>
+            <label htmlFor="taskName">taskID</label>
+            <input 
+            id="taskID"
+            name="taskID"                   
+            placeholder="Enter taskID"
+            type="text"
+            onChange={this.handleChange.bind(this)} />
+            </div>
             <div>
             <label htmlFor="taskName">taskName</label>
             <input 
