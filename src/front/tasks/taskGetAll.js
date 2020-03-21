@@ -12,20 +12,33 @@ class taskGetAll extends React.Component {
         tasks: [],
         loding: false,
         currentPage: 1,
-        tasksPerpage: 10
+        tasksPerpage: 10,
+        error: ""
       }  }  
       
         componentDidMount ()  {
           this.setState({
+            error: "",
             loding: true
           })
-          
-          axios.get('http://localhost:3001/tasks')
+          let token = "Bearer " + localStorage.getItem("jwt");
+          axios.get('http://localhost:3001/tasks', {headers: {'Authorization': token }})
           .then(res => {
             console.log("res",res)
             const tasks = res.data;
             this.setState({ tasks });
+            // if(!res.status === 200){
+            //   this.setState({error: "You are not authorized!"})
+            // }
           })
+          .catch(error => {
+            console.log("error:",error.response.status)
+            if(error.response.status === 401){
+              this.setState({error: "You are not authorized!"})
+            } else if (error.response.status === 403){
+              this.setState({error: "You are not admin!"})
+            }
+        });
            this.setState({
           loding: false
           })
@@ -46,6 +59,7 @@ class taskGetAll extends React.Component {
    {console.log("cur",currentTasks)}
     <TasksPagin tasks={currentTasks}/> 
     <Pagination tasksPerpage={this.state.tasksPerpage} totalTasks={this.state.tasks.length} paginate={this.paginate.bind(this)}/>               
+    <div style={{marginLeft: "550px"}}><h1>{this.state.error}</h1></div>
    </div>
         )
       }

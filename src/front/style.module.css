@@ -134,3 +134,21 @@ input[type="submit"]:hover{
 	color:white;
 	transform: scale(1.04);
 }
+
+.Sign_in_up{
+    margin-left: 1000px;
+	padding: 20px;
+}
+
+.Sign_in_up button{
+	    margin-left: 20px;
+		width: 120px;
+		height: 40px;
+		background-color: rgb(64, 118, 199);
+		font-weight: bold;
+		color: aliceblue;
+		cursor: pointer;
+		padding: 10px;
+		font-size: medium;
+
+}

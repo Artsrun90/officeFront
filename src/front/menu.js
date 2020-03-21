@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect } from 'react-router-dom';
 import  s from './style.module.css';
 import { IoIosContacts } from "react-icons/io";
 import { IoIosContact } from "react-icons/io";
@@ -7,6 +7,7 @@ import { FaBuffer } from "react-icons/fa";
 import { IoIosDocument } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
+
 
 class Menu extends React.Component {
 state = {
@@ -83,12 +84,15 @@ showUser(event) {
         })
     }
   }
+  
 
     render(){
         return(
             <nav className={s.sidemenu}>
                 <div style={{fontSize: "30px", backgroundColor: "gray", paddingTop:"20px", paddingBottom:"5px"}}>
+                    <Link  style={{textDecoration:"none"}} to="/">
                     <h2>PROGDash </h2>
+                    </Link>
                 </div> 
                 <ul>     
                                                      
@@ -194,7 +198,7 @@ showUser(event) {
                     ?
                     (<div style={{marginLeft:"30px", backgroundColor: "#474C56"}}>
 
-                    <Link to='/projects/all' style={{textDecoration:"none"}}>
+                    <Link to='/users/all' style={{textDecoration:"none"}}>
                         <li style={{fontSize:"20px"}}>- All</li>
                     </Link>
 
@@ -218,6 +222,7 @@ showUser(event) {
                     :(null)}
                 </ul>
                 </nav>
+               
         )
     }
 }
