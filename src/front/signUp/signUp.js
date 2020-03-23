@@ -21,7 +21,12 @@ class RegisterForm extends Component {
   validate = () => {
     let errorForm = "";
     let err = "";
-    
+    console.log("includes:----",this.state.email.includes("@"))
+    console.log("email:----",this.state.email.match(/[0-9]/g))
+
+    if(this.state.email.match(/[0-9]/g) === null || this.state.password.match(/[0-9]/g) === null) {
+      errorForm = "You have a some ERROR";
+    } else {          
     if (
       this.state.email === "name" ||
       this.state.email.length < 10 ||
@@ -31,12 +36,11 @@ class RegisterForm extends Component {
       this.state.password.length < 6 ||
       this.state.password.match(/[0-9]/g).length === 0      
     ) {
-      console.log("length",this.state.email.includes("@"))
-      console.log("email",this.state.email)
       errorForm = "You have a some ERROR";
     } else if (this.state.count === 3) {
       err = "Cannot login at this time. Contact the System Administrator";
     }
+  }
 
     if (errorForm) {
       this.setState({ errorForm });
@@ -165,7 +169,7 @@ class RegisterForm extends Component {
         <div style={{width: "400px"}}>
 
           <div style={{width: "200px", float: "left"}}>
-          <label for="male" style={{color: "#696969"}}>Male</label>
+          <label htmlFor="male" style={{color: "#696969"}}>Male</label>
           <input
             style={{width: "20px", height: "20px"}}
             type="radio"
@@ -176,7 +180,7 @@ class RegisterForm extends Component {
           </div>
 
           <div style={{width: "200px", float: "right"}}>
-          <label for="male" style={{color: "#696969"}}>Female</label>
+          <label htmlFor="male" style={{color: "#696969"}}>Female</label>
           <input
             style={{width: "20px", height: "20px"}}
             type="radio"

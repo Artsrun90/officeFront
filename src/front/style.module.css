@@ -65,12 +65,12 @@
 	margin-top: 8px;
 	/* margin-left: auto; */
 	/* margin: 0 auto; */
-	background-color: rgb(153, 153, 153);
+	background-color: #EAEAEA;
 	padding: 40px;
 	color: #A22125;
 }
 .myform label{
-	color: rgb(255, 255, 255);
+	color: rgb(100, 100, 100);
 	display: block;
 }
 input[type="submit"]{
@@ -104,7 +104,8 @@ input[type="submit"]:hover{
 .div{
 	background-color: rgb(245, 245, 245);
 	height: 600px;
-	margin-top: 0px;
+	/* margin-top: 10px; */
+	margin-left: 149px;
 }
 
 .div h1 {
@@ -137,7 +138,7 @@ input[type="submit"]:hover{
 
 .Sign_in_up{
     margin-left: 1000px;
-	padding: 20px;
+	padding: 25px;
 }
 
 .Sign_in_up button{

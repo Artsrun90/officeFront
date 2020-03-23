@@ -1,14 +1,15 @@
 import React from "react";
 import s from "./style.module.css";
+import MPP from "./MPP.png"
 
 class Programming extends React.Component {
+
   
-
-
   render() {
+    console.log("render")
     return (
       <div className={s.div}>
-        <h1>Manage Programming Process</h1>
+        <img src={MPP}/>
       </div>
     );
   }

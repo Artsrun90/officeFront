@@ -32,7 +32,7 @@ class UsersGetAll extends React.Component {
             if(error.response.status === 401){
               this.setState({error: "You are not authorized!"})
             } else if (error.response.status === 403){
-              this.setState({error: "You are not admin!"})
+              this.setState({error: "You do not have administrator rights!"})
             }
         });
           }

@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import s from "../style.module.css";
+import d from "./project.module.css";
 
 class ProjectDelete extends React.Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class ProjectDelete extends React.Component {
           onChange={this.handleChange.bind(this)}
         />
         <div>
-          <button onClick={this.findProject.bind(this)}>Delete</button>
+          <button className={d.projectbutton} onClick={this.findProject.bind(this)}>Delete</button>
         </div>
         <table className={s.project}>
           {/* <tr>

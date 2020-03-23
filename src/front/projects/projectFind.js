@@ -6,7 +6,7 @@ class ProjectFind extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      project: [],
+      project: {},
       pro: ""
     };
   }
@@ -22,6 +22,7 @@ class ProjectFind extends React.Component {
       const project = res.data;
       console.log("mount", project);
       this.setState({ project });
+      console.log("data:", typeof(project))
     });
   };
 
@@ -35,7 +36,7 @@ class ProjectFind extends React.Component {
           onChange={this.handleChange.bind(this)}
         />
         <div>
-          <button onClick={this.findProject.bind(this)}>Get Project</button>
+          <button className={s.projectbutton} onClick={this.findProject.bind(this)}>Get Project</button>
         </div>
         <table className={s.project}>
           <tr>

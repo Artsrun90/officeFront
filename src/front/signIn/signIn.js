@@ -44,12 +44,13 @@ class RegisterForm extends Component {
         })
           .catch(this.setState({err:"You have some error"}))
           console.log("props",this.props)
-          console.log("username",this.state.userName);
-          
+          console.log("username",this.state.userName);    
   };
 
+  componentWillUnmount(){
+    window.location.reload(false);
+  }
   
-
   render() {
     return (
       <form className={s.myform} onSubmit={this.hanleSubmit.bind(this)}>          
@@ -77,16 +78,18 @@ class RegisterForm extends Component {
             type="text"
             name="userName"
             placeholder="Enter your Name"
-            onChange={this.handleChange.bind(this)}
+            onChange={this.incrementCount.bind(this)}
           />
         </div>
        
         <div>
+          <a href="/">
           <input
             type="submit"
             value="Sign In"
             onClick={this.incrementCount.bind(this)}
           />
+          </a>
         </div>
       </form>
     );

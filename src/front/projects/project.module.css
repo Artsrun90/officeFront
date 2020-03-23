@@ -28,3 +28,19 @@
 .hidden {
   visibility: hidden;
 }
+
+
+
+.projectbutton{
+  /* margin-left: 20px; */
+  width: 120px;
+  height: 40px;
+  background-color: rgb(64, 118, 199);
+  font-weight: bold;
+  color: aliceblue;
+  cursor: pointer;
+  padding: 10px;
+  font-size: medium;
+  margin-bottom: 20px;
+
+}

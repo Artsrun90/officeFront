@@ -36,7 +36,7 @@ class taskGetAll extends React.Component {
             if(error.response.status === 401){
               this.setState({error: "You are not authorized!"})
             } else if (error.response.status === 403){
-              this.setState({error: "You are not admin!"})
+              this.setState({error: "You do not have administrator rights!"})
             }
         });
            this.setState({
@@ -59,7 +59,7 @@ class taskGetAll extends React.Component {
    {console.log("cur",currentTasks)}
     <TasksPagin tasks={currentTasks}/> 
     <Pagination tasksPerpage={this.state.tasksPerpage} totalTasks={this.state.tasks.length} paginate={this.paginate.bind(this)}/>               
-    <div style={{marginLeft: "550px"}}><h1>{this.state.error}</h1></div>
+    <div style={{marginLeft: "500px"}}><h1>{this.state.error}</h1></div>
    </div>
         )
       }

@@ -46,12 +46,12 @@
 	margin-top: 8px;
 	/* margin-left: auto; */
 	/* margin: 0 auto; */
-	background-color: rgb(153, 153, 153);
+	background-color: #F2F2F2;
 	padding: 40px;
 	color: #A22125;
 }
 .myform label{
-	color: rgb(255, 255, 255);
+	color: rgb(114, 114, 114);
 	display: block;
 }
 input[type="submit"]{
@@ -68,3 +68,17 @@ input[type="submit"]:hover{
 	color:white;
 	transform: scale(1.04);
 }
+
+.rolebutton{
+	/* margin-left: 20px; */
+	width: 120px;
+	height: 40px;
+	background-color: rgb(64, 118, 199);
+	font-weight: bold;
+	color: aliceblue;
+	cursor: pointer;
+	padding: 10px;
+	font-size: medium;
+	margin-bottom: 20px;
+  
+  }

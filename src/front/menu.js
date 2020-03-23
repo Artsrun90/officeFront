@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, Redirect } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import  s from './style.module.css';
 import { IoIosContacts } from "react-icons/io";
 import { IoIosContact } from "react-icons/io";
@@ -96,7 +96,7 @@ showUser(event) {
                 </div> 
                 <ul>     
                                                      
-                    <Link style={{textDecoration:"none"}} onClick={this.showProject.bind(this)}>
+                    <Link to='/projects' style={{textDecoration:"none"}} onClick={this.showProject.bind(this)}>
                          <li ><FaBuffer/> Projects {this.state.iconProject}</li>
                     </Link>
                     
@@ -171,7 +171,7 @@ showUser(event) {
                         <li style={{fontSize:"20px"}}>- All</li>
                     </Link>
 
-                    <Link to='/projects/find' style={{textDecoration:"none"}}>
+                    <Link to='/tasks/find' style={{textDecoration:"none"}}>
                         <li style={{fontSize:"20px"}}>- Find</li>
                     </Link>
 

@@ -20,9 +20,10 @@ import SignUp from "./front/signUp/signUp";
 import SignIn from "./front/signIn/signIn";
 import UsersGetAll from "./front/users/usergetall";
 import Logout from "./front/logOut/logOut";
-
 import  s from './front/style.module.css';
 import Account from "./front/account/account";
+import RoleFind from "./front/role/rolefind";
+import TaskFind from "./front/tasks/taskFind";
 
 class App extends React.Component {         
   
@@ -37,9 +38,7 @@ class App extends React.Component {
     );
   }
 }
-function refreshPage() {
-  window.location.reload(false);
-}
+
 const Navigation = () => (
   <div style={{backgroundColor: "#EAEAEA"}}>
                 {                                                                                                
@@ -49,7 +48,7 @@ const Navigation = () => (
                       <button>My account</button>
                   </Link>
                   <Link to="/log_out">
-                      <button onClick={refreshPage}>Log out</button>
+                      <button>Log out</button>
                   </Link>
                   </div>
                   :
@@ -78,10 +77,12 @@ const AllComponents = () => (
           <Route path="/projects/update" component={ProjectUpdate} />
           <Route path="/projects/delete" component={ProjectDelete} />
           <Route path="/roles/all" component={GetAllRoles} />
+          <Route path="/roles/find" component={RoleFind}/>
           <Route path="/roles/create" component={RoleCreate} />
           <Route path="/roles/update" component={RoleUpdate} />
           <Route path="/roles/delete" component={RoleDelete} />
           <Route path="/tasks/all" component={ТaskGetAll} />
+          <Route path="/tasks/find" component={TaskFind} />
           <Route path="/tasks/create" component={Тaskcreate} />
           <Route path="/tasks/update" component={ТaskUpdate} />
           <Route path="/tasks/delete" component={TaskDelete} />
