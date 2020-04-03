@@ -19,7 +19,7 @@
 	border-style: solid;
 	border-width: 0.5px;
 	width: 400px;
-	height: 350px;
+	height: 550px;
 	margin-left: 550px;
 	margin-top: 30px;
 	margin-bottom: 30px;
@@ -51,22 +51,22 @@ h1{
     color: black;
 }
 
-.project {
+.user {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
 
-.project td, .project th {
+.user td, .user th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-.project tr:nth-child(even){background-color: #f2f2f2;}
+.user tr:nth-child(even){background-color: #f2f2f2;}
 
-.project tr:hover {background-color: #ddd;}
+.user tr:hover {background-color: #ddd;}
 
-.project th {
+.user th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
@@ -88,17 +88,16 @@ h1{
 }
 
 
-
-.projectbutton{
-  /* margin-left: 20px; */
-  width: 120px;
-  height: 40px;
-  background-color: rgb(64, 118, 199);
-  font-weight: bold;
-  color: aliceblue;
-  cursor: pointer;
-  padding: 10px;
-  font-size: medium;
-  margin-bottom: 20px;
-
-}
+  .userbutton{
+    /* margin-left: 20px; */
+    width: 120px;
+    height: 40px;
+    background-color: rgb(64, 118, 199);
+    font-weight: bold;
+    color: aliceblue;
+    cursor: pointer;
+    padding: 10px;
+    font-size: medium;
+    margin-bottom: 20px;
+  
+  }

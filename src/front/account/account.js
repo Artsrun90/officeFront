@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import s from "./account.module.css";
+import {Link} from 'react-router-dom';
 
 class Account extends Component {
     state = {
@@ -26,7 +27,9 @@ class Account extends Component {
                 date_Of_Birth: response.data.date_Of_Birth,
                 gender: response.data.gender,
             })         
-            axios.get(`http://localhost:3001/roll/${this.state.roll_id}`)
+            // axios.get(`http://localhost:3001/roll/${this.state.roll_id}`)
+        let token = "Bearer " + localStorage.getItem("jwt");
+        axios.get(`http://localhost:3001/roll/getRoleIdForAccount/${this.state.roll_id}`, {headers: {'Authorization': token }})
         .then(response =>{ 
             console.log("role-id",response.data)  
             console.log("role",response.data)  
@@ -69,6 +72,9 @@ class Account extends Component {
                 <label>Role: </label>
                 <h3>{this.state.role}</h3>
                 </div>
+                <Link to='/update_yourself' style={{textDecoration:"none"}}>
+                <button className={s.updateButton}>Update</button>
+                </Link>
             </div>
         )
     }

@@ -1,7 +1,32 @@
-*{
-	transition: all 0.5s;
-}
-.myform input{
+.tasks {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 1100px;
+  }
+  
+  .tasks td, .tasks th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .tasks tr:nth-child(even){background-color: #f2f2f2;}
+  
+  .tasks tr:hover {background-color: #ddd;}
+  
+  .tasks th {
+	width: 1100px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgb(96, 141, 209);
+    color: white;
+  }
+  .hidden {
+    visibility: hidden;
+  }
+
+
+  .myform input{
 	color: rgb(48, 48, 48);
 	width: 90%;
 	background-color: rgba(136, 135, 135, 0.226);
@@ -51,54 +76,16 @@ h1{
     color: black;
 }
 
-.project {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-.project td, .project th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-.project tr:nth-child(even){background-color: #f2f2f2;}
-
-.project tr:hover {background-color: #ddd;}
-
-.project th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: rgb(96, 141, 209);
-  color: white;
-}
-.hidden {
-  visibility: hidden;
-}
-
-.text{
-	color: rgb(105, 105, 105);
-	width: 90%;
-	background-color: rgba(136, 135, 135, 0.226);
-	margin: 10px 2px;
-	padding: 10px 20px;
-	border:none;
-	box-shadow: 1px 1px 3px 2px rgb(172, 172, 172);
-}
-
-
-
-.projectbutton{
-  /* margin-left: 20px; */
-  width: 120px;
-  height: 40px;
-  background-color: rgb(64, 118, 199);
-  font-weight: bold;
-  color: aliceblue;
-  cursor: pointer;
-  padding: 10px;
-  font-size: medium;
-  margin-bottom: 20px;
-
-}
+.usertaskbutton{
+	/* margin-left: 20px; */
+	width: 120px;
+	height: 40px;
+	background-color: rgb(64, 118, 199);
+	font-weight: bold;
+	color: aliceblue;
+	cursor: pointer;
+	padding: 10px;
+	font-size: medium;
+	/* margin-bottom: 20px; */
+  
+  }

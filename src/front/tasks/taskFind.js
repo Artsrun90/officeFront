@@ -3,14 +3,12 @@ import axios from "axios";
 import s from "../projects/project.module.css";
 
 class TaskFind extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+    state = {
       tasks: {},
       task: "",
       error: ""
     };
-  }
+  
 
   handleChange = event => {
     event.preventDefault();
@@ -19,6 +17,11 @@ class TaskFind extends React.Component {
   };
 
   findTask = () => {
+    this.setState({
+      tasks: {},
+      task: "",
+      error: ""
+    })
     let token = "Bearer " + localStorage.getItem("jwt");
     console.log("jwt", localStorage.getItem("jwt"))
     axios.get(`http://localhost:3001/tasks/${this.state.task}`, {headers: {'Authorization': token }})
@@ -30,16 +33,18 @@ class TaskFind extends React.Component {
     .catch(error => {
         console.log("error:",error.response.status)
         if(error.response.status === 401){
-          this.setState({error: "You are not authorized!"})
+          this.setState({error: "You aren't authorized!"})
         } else if (error.response.status === 403){
-          this.setState({error: "You do not have administrator rights!"})
+          this.setState({error: "You don't have administrator rights!"})
+        }else if(error.response.status === 404){
+          this.setState({error: "Not found!"})
         }
     });
   };
 
   render() {
     return (
-      <div style={{ marginLeft: "300px" }}>
+      <div style={{ marginLeft: "220px" }}>
         <h2>Enter Task Id</h2>
         <input
           type="text"

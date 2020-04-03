@@ -11,7 +11,7 @@ import Тaskcreate from "./front/tasks/taskscreate";
 import ТaskUpdate from "./front/tasks/tasksUpdate";
 import TaskDelete from "./front/tasks/deleteTask";
 import Programming from "./front/Programming";
-import ProjectsAll from "./front/projects/projectAll";
+import ProjectsAll from "./front/projects/projectgetall";
 import ProjectFind from "./front/projects/projectFind";
 import ProjectCreate from "./front/projects/projectCreate";
 import ProjectUpdate from "./front/projects/projectUpdate";
@@ -24,14 +24,40 @@ import  s from './front/style.module.css';
 import Account from "./front/account/account";
 import RoleFind from "./front/role/rolefind";
 import TaskFind from "./front/tasks/taskFind";
+import UserFind from "./front/users/userFind";
+import UsersCreate from "./front/users/userCreate";
+import UsersUpdate from "./front/users/userUpdate";
+import UsersDelete from "./front/users/deleteUser";
 
-class App extends React.Component {         
-  
+import axios from "axios";
+import Avatar from "./front/avatar.png"
+import UserTask from "./front/user_task/user-task";
+import TasksOfUser from "./front/user_task/tasksOfUser";
+import UpdateYourself from "./front/account/updateYourself";
+import UserTasksCreate from "./front/user_task/userTaskCreate";
+
+class App extends React.Component { 
+  constructor(props){
+    super(props);
+  this.state = {
+    username: ""
+  }
+}
+
+  componentDidMount(){
+        let token = "Bearer " + localStorage.getItem("jwt");
+        axios.get(`http://localhost:3001/users`, {headers: {'Authorization': token }})
+        .then(response =>{  
+            this.setState({
+                userName: response.data.userName
+            })         
+            })               
+    }
 
   render() {
     return (
       <Router>    
-        <Navigation/>
+        <Navigation username={this.state.userName}/>
         <Menu />
         <AllComponents/>
       </Router>
@@ -39,11 +65,21 @@ class App extends React.Component {
   }
 }
 
-const Navigation = () => (
-  <div style={{backgroundColor: "#EAEAEA"}}>
+const Navigation = (props) => (
+  
+  <div style={{backgroundColor: "#EAEAEA", height: "90px"}}>
+                {console.log("name:",props)}
                 {                                                                                                
                   localStorage.getItem("jwt") ? 
-                  <div className={s.Sign_in_up} style={{marginLeft: "1000px"}}>
+                  <div className={s.Sign_in_up} style={{ marginLeft: "200px"}}>                    
+                  <div style={{float: "left"}}>                   
+                      <img src={Avatar} alt="Avatar" className={s.avatar}/>
+                      <div className={s.username}>
+                      <p><b>{props.username}</b></p>
+                      {/* width:"150px" */}
+                      </div>
+                  </div>
+                  <div style={{float: "right"}}>
                   <Link to="/account">
                       <button>My account</button>
                   </Link>
@@ -51,11 +87,12 @@ const Navigation = () => (
                       <button>Log out</button>
                   </Link>
                   </div>
+                  </div>
                   :
-                <div className={s.Sign_in_up}>                
-                 <Link to="/sign_up" style={{width: "200px"}}>
+                <div className={s.Sign_in_up} style={{marginLeft: "1010px"}}>                
+                  <Link to="/sign_up" style={{width: "200px"}}>
                    <button>Sign Up</button>
-                 </Link>
+                  </Link>
                   <Link to="/sign_in" style={{width: "200px"}}>
                     <button >Sign In</button>
                   </Link>
@@ -64,6 +101,7 @@ const Navigation = () => (
     </div>
 );
 
+
 const AllComponents = () => (
   <Switch>        
           <Route path="/" exact component={Programming} />
@@ -71,6 +109,7 @@ const AllComponents = () => (
           <Route path="/sign_up" component={SignUp} />
           <Route path="/log_out" component={Logout} />
           <Route path="/account" component={Account} />
+          <Route path="/update_yourself" component={UpdateYourself} />
           <Route path="/projects/all" component={ProjectsAll} />
           <Route path="/projects/find" component={ProjectFind} />
           <Route path="/projects/create" component={ProjectCreate} />
@@ -87,6 +126,13 @@ const AllComponents = () => (
           <Route path="/tasks/update" component={ТaskUpdate} />
           <Route path="/tasks/delete" component={TaskDelete} />
           <Route path="/users/all" component={UsersGetAll} />
+          <Route path="/users/find" component={UserFind} />
+          <Route path="/users/create" component={UsersCreate} />
+          <Route path="/users/update" component={UsersUpdate} />
+          <Route path="/users/delete" component={UsersDelete} />
+          <Route path="/user-task" component={UserTask} />
+          <Route path="/tasks-of-user" component={TasksOfUser} />
+          <Route path="/user-task-create" component={UserTasksCreate} />
   </Switch>
 );
 

@@ -6,7 +6,7 @@
 
 .sidemenu {
 	height: 100%;
-	width: 200px;
+	width: 210px;
 	position: fixed;
 	z-index: 1;
 	top: 0;
@@ -127,9 +127,9 @@ input[type="submit"]:hover{
 		color: aliceblue;
 		/* box-shadow: 1px 1px 3px 2px #C91612; */
 		cursor: pointer;
-		padding: 10px;
-	
+		padding: 10px;	
 }
+
 .butt:hover{
 	/* background-color:rgb(167, 159, 159); */
 	color:white;
@@ -137,8 +137,7 @@ input[type="submit"]:hover{
 }
 
 .Sign_in_up{
-    margin-left: 1000px;
-	padding: 25px;
+	padding: 18px;
 }
 
 .Sign_in_up button{
@@ -153,3 +152,17 @@ input[type="submit"]:hover{
 		font-size: medium;
 
 }
+
+.avatar {
+	width: 40px;
+	border-radius: 50%;
+	float: left;
+  }
+
+.username{
+	color: rgb(51, 51, 51);
+	width: 110px;
+	margin-left: 50px;
+	margin-top: 5px;
+	font-size: 20px;
+  }

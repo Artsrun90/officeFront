@@ -7,6 +7,8 @@ import { FaBuffer } from "react-icons/fa";
 import { IoIosDocument } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
+// import axios from "axios";
+// import Avatar from "./avatar.png"
 
 
 class Menu extends React.Component {
@@ -19,7 +21,21 @@ state = {
     iconTask: <IoIosArrowDown/>,
     showUser: false,
     iconUser: <IoIosArrowDown/>,
+    showUserTask: false,
+    iconUserTask: <IoIosArrowDown/>,
+    userName: ""
 }
+
+// componentDidMount(){
+//     let token = "Bearer " + localStorage.getItem("jwt");
+//     axios.get(`http://localhost:3001/users`, {headers: {'Authorization': token }})
+//     .then(response =>{ 
+//         console.log("response",response.data)  
+//         this.setState({
+//             userName: response.data.userName
+//         })         
+//         })               
+// }
 
 showProject(event) {
     event.preventDefault();       
@@ -84,6 +100,21 @@ showUser(event) {
         })
     }
   }
+showUserTask(event) {
+    event.preventDefault();       
+    this.setState({
+        showUserTask: !this.state.showUserTask,
+    });
+    if(this.state.showUserTask){
+        this.setState({
+            iconUserTask: <IoIosArrowDown/>
+        })
+    } else{
+        this.setState({
+            iconUserTask: <IoIosArrowUp/>
+        })
+    }
+  }
   
 
     render(){
@@ -94,7 +125,7 @@ showUser(event) {
                     <h2>PROGDash </h2>
                     </Link>
                 </div> 
-                <ul>     
+                <ul style={{width: "100%"}}>     
                                                      
                     <Link to='/projects' style={{textDecoration:"none"}} onClick={this.showProject.bind(this)}>
                          <li ><FaBuffer/> Projects {this.state.iconProject}</li>
@@ -202,21 +233,43 @@ showUser(event) {
                         <li style={{fontSize:"20px"}}>- All</li>
                     </Link>
 
-                    <Link to='/projects/find' style={{textDecoration:"none"}}>
+                    <Link to='/users/find' style={{textDecoration:"none"}}>
                         <li style={{fontSize:"20px"}}>- Find</li>
                     </Link>
 
-                    <Link to='/projects/create' style={{textDecoration:"none"}}>
+                    <Link to='/users/create' style={{textDecoration:"none"}}>
                         <li style={{fontSize:"20px"}}>- Create</li>
                     </Link>
 
-                    <Link to='/projects/update' style={{textDecoration:"none"}}>
+                    <Link to='/users/update' style={{textDecoration:"none"}}>
                         <li style={{fontSize:"20px"}}>- Update</li>
                     </Link>
 
-                    <Link to='/projects/delete' style={{textDecoration:"none"}}>
+                    <Link to='/users/delete' style={{textDecoration:"none"}}>
                         <li style={{fontSize:"20px"}}>- Delete</li>
                     </Link>
+
+                    </div>)
+                    :(null)}
+                    <Link to='/users' style={{textDecoration:"none"}} onClick={this.showUserTask.bind(this)}>
+                        <li><IoIosContacts/> AbUser {this.state.iconUserTask}</li>
+                    </Link>
+
+                    {this.state.showUserTask
+                    ?
+                    (<div style={{marginLeft:"30px", backgroundColor: "#474C56"}}>
+
+                    <Link to='/user-task' style={{textDecoration:"none"}}>
+                        <li style={{fontSize:"20px"}}>- UserTask</li>
+                    </Link>
+
+                    <Link to='/tasks-of-user' style={{textDecoration:"none"}}>
+                        <li style={{fontSize:"20px"}}>- TasksOfUser</li>
+                    </Link>  
+
+                    <Link to='/user-task-create' style={{textDecoration:"none"}}>
+                        <li style={{fontSize:"20px"}}>- Create</li>
+                    </Link> 
 
                     </div>)
                     :(null)}

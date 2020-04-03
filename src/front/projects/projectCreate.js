@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-import s from "../style.module.css";
+import s from "./project.module.css";
+
 
 class ProjectCreate extends React.Component {
   state = {
@@ -11,18 +12,18 @@ class ProjectCreate extends React.Component {
     err: ""
   };
 
-  handleChange = e => {
-    const an = e.target.name;
-    const va = e.target.value;
-    switch (an) {
+  handleChange = event => {
+    const e = event.target.name;
+    const value = event.target.value;
+    switch (e) {
       case "name":
-        this.setState({ name: va });
+        this.setState({ name: value });
         break;
       case "description":
-        this.setState({ description: va });
+        this.setState({ description: value });
         break;
       case "userID":
-        this.setState({ userID: va });
+        this.setState({ userID: value });
         break;
 
       default:
@@ -38,22 +39,24 @@ class ProjectCreate extends React.Component {
     });
     const form = event.target;
 
-    const project = {
+    const projects = {
       name: this.state.name,
       description: this.state.description,
       userID: this.state.userID
     };
-    axios
-      .post(`http://localhost:3001/projects`, { project })
+    // axios.post(`http://localhost:3001/projects`, { project })
+    let token = "Bearer " + localStorage.getItem("jwt")
+    axios({ method: 'post', url: 'http://localhost:3001/projects', headers: {'Authorization': token }, data: { project: projects }})
       .then(response => {
-        // console.log(response);
-        if (response.status === 201) {
-          this.setState({ err: "Created" });
-        } else {
-          this.setState({ err: "Not created" });
-        }
+        if(response.status === 201) this.setState({ err: "Creted" });
       })
-      .catch(this.setState({ err: "Not created" }));
+      .catch(error => {
+        if(error.response.status === 401){
+          this.setState({err: "You aren't authorized!"})
+        } else if (error.response.status === 403){
+          this.setState({err: "You don't have administrator rights!"})
+        }
+    });
     form.reset();
   }
 
@@ -62,7 +65,6 @@ class ProjectCreate extends React.Component {
       <form className={s.myform} onSubmit={this.handleSubmit.bind(this)}>
         <h1 style={{ color: "#363B45" }}>Create new Project</h1>
         <div>
-          <label htmlFor="name">Project Name</label>
           <input
             id="name"
             name="name"
@@ -73,7 +75,6 @@ class ProjectCreate extends React.Component {
         </div>
 
         <div>
-          <label htmlFor="description">Project Description</label>
           <textarea
             className={s.text}
             id="description"
@@ -84,7 +85,6 @@ class ProjectCreate extends React.Component {
           />
         </div>
         <div>
-          <label htmlFor="userID">User Id</label>
           <input
             id="userID"
             name="userID"

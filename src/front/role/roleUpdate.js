@@ -7,7 +7,6 @@ class RoleUpdate extends React.Component {
     state = {      
         roleID:null,   
         roleName: null,
-        chek: "",
         err:""       
     } 
 
@@ -36,23 +35,21 @@ class RoleUpdate extends React.Component {
         console.log(this.state.err)    
       const form = event.target;
         const rolls = { rollName: this.state.roleName}
-        axios.patch(
-          `http://localhost:3001/roll/${this.state.roleID}`, {roll: rolls}) 
+        // axios.patch(`http://localhost:3001/roll/${this.state.roleID}`, {roll: rolls})
+        let token = "Bearer " + localStorage.getItem("jwt")
+      axios({ method: 'patch', url: `http://localhost:3001/roll/${this.state.roleID}`, headers: {'Authorization': token }, data: { roll: rolls }})
           .then(response =>{ 
-            console.log(response)
-            if(response.status === 200){ 
-            this.setState({chek:true})
-            console.log(this.state.chek)  
-            } else{
-              this.setState({chek:false})
-            } 
+            if(response.status === 200) this.setState({ err: "Updated" }); 
             })    
-           .then(() => {if(this.state.chek){
-            this.setState({err:"Created"})            
-          } else {
-            this.setState({err:"Not created"})
-          }})
-          .catch(this.setState({err:"Not created"}))
+            .catch(error => {
+              if(error.response.status === 401){
+                this.setState({err: "You aren't authorized!"})
+              } else if (error.response.status === 403){
+                this.setState({err: "You don't have administrator rights!"})
+              } else if(error.response.status === 404){
+                this.setState({err: "Not found!"})
+              }
+          })   
         
         
         form.reset();       
@@ -60,10 +57,9 @@ class RoleUpdate extends React.Component {
     
       render() {       
         return (
-          <form className={s.myform} onSubmit={this.handleSubmit.bind(this)}>
+          <form className={s.myform} style={{height:"250px"}} onSubmit={this.handleSubmit.bind(this)}>
             <h1 style={{color:"#363B45"}}>Update role</h1>
             <div>
-            <label htmlFor="roleID">roleID</label>
             <input 
             id="roleID"
             name="roleID"                   
@@ -72,7 +68,6 @@ class RoleUpdate extends React.Component {
             onChange={this.handleChange.bind(this)} />
             </div>
             <div>
-            <label htmlFor="roleName">taskName</label>
             <input 
             id="roleName"
             name="roleName"                   
@@ -80,7 +75,7 @@ class RoleUpdate extends React.Component {
             type="text"
             onChange={this.handleChange.bind(this)} />
             </div>            
-            <p>{this.state.err}</p>
+            <p style={{color:"red"}}>{this.state.err}</p>
             <input 
                 type="submit"
                 value="Update"

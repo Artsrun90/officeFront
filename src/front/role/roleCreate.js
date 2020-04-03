@@ -6,8 +6,7 @@ class RoleCreate extends React.Component {
     state = {         
         rollName: null,
         project_id: null,
-        chek: "",
-        err:""       
+        err: ""  
     } 
 
     handleChange = (event) =>{       
@@ -26,41 +25,31 @@ class RoleCreate extends React.Component {
     handleSubmit = (event) => {
       event.preventDefault();
       this.setState({
-        chek: "",
-        err:""})
-        console.log(this.state.chek)    
-        console.log(this.state.err)    
+        err:""})   
       const form = event.target;
         const rolls = { rollName:this.state.rollName}
-        axios.post(
-          `http://localhost:3001/roll`, {roll: rolls}) 
-
+        // axios.post(`http://localhost:3001/roll`, {roll: rolls})
+        let token = "Bearer " + localStorage.getItem("jwt")
+    axios({ method: 'post', url: 'http://localhost:3001/roll', headers: {'Authorization': token }, data: { roll: rolls }})
           .then(response =>{ 
-            console.log(response)
-            if(response.status === 201){ 
-            this.setState({chek:true})
-            console.log(this.state.chek)  
-            } else{
-              this.setState({chek:false})
-            } 
+            if(response.status === 201) this.setState({ err: "Creted" });
             })    
-           .then(() => {if(this.state.chek){
-            this.setState({err:"Created"})            
-          } else {
-            this.setState({err:"Not created"})
-          }})
-          .catch(this.setState({err:"Not created"}))
-        
+            .catch(error => {
+              if(error.response.status === 401){
+                this.setState({err: "You aren't authorized!"})
+              } else if (error.response.status === 403){
+                this.setState({err: "You don't have administrator rights!"})
+              }
+          });        
         
         form.reset();       
       }
     
       render() {       
         return (
-          <form className={s.myform} onSubmit={this.handleSubmit.bind(this)}>
+          <form className={s.myform} style={{height:"200px"}} onSubmit={this.handleSubmit.bind(this)}>
             <h1 style={{color:"#363B45"}}>Create new Role</h1>
             <div>
-            <label htmlFor="rollName">Role Name</label>
             <input 
             id="rollName"
             name="rollName"                   
@@ -68,7 +57,7 @@ class RoleCreate extends React.Component {
             type="text"
             onChange={this.handleChange.bind(this)} />
             </div>
-            <p>{this.state.err}</p>
+            <p style={{color: "red"}}>{this.state.err}</p>
             <input 
                 type="submit"
                 value="Create"

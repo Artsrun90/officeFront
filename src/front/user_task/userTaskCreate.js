@@ -1,12 +1,11 @@
 import React from "react";
 import axios from "axios";
-import s from "./task.module.css";
+import s from "./usertask.module.css"
 
-class TasksCreate extends React.Component {
+class UserTasksCreate extends React.Component {
   state = {
-    taskName: null,
-    taskDescription: null,
-    project_id: null,
+    userId: null,
+    taskId: null,
     err: ""
   };
 
@@ -14,14 +13,11 @@ class TasksCreate extends React.Component {
     let e = event.target.name;
     let value = event.target.value;
     switch (e) {
-      case "taskName":
-        this.setState({ taskName: value });
+      case "userId":
+        this.setState({ userId: value });
         break;
-      case "taskDescription":
-        this.setState({ taskDescription: value });
-        break;
-      case "project_id":
-        this.setState({ project_id: value });
+      case "taskId":
+        this.setState({ taskId: value });
         break;
       default:
         console.log("anhamatexeli anun");
@@ -36,15 +32,14 @@ class TasksCreate extends React.Component {
     });
     console.log(this.state.err);
     const form = event.target;
-    const tasks = {
-      taskName: this.state.taskName,
-      taskDescription: this.state.taskDescription,
-      project_id: this.state.project_id
+    const usertask = {
+        user_id: this.state.userId,
+        task_id: this.state.taskId
     };
     // let token = "Bearer " + localStorage.getItem("jwt");
     // axios.post(`http://localhost:3001/tasks`, {headers: {'Authorization': token }}, { task: tasks })
     let token = "Bearer " + localStorage.getItem("jwt")
-    axios({ method: 'post', url: 'http://localhost:3001/tasks', headers: {'Authorization': token }, data: { task: tasks }})
+    axios({ method: 'post', url: 'http://localhost:3001/user_task', headers: {'Authorization': token }, data: { user_task: usertask }})
     .then(response => {
       if(response.status === 201) this.setState({ err: "Creted" });         
       })
@@ -53,6 +48,8 @@ class TasksCreate extends React.Component {
           this.setState({err: "You aren't authorized!"})
         } else if (error.response.status === 403){
           this.setState({err: "You don't have administrator rights!"})
+        } else if (error.response.status === 422){
+          this.setState({err: "You entered incorrect data!"})
         }
     });
 
@@ -61,34 +58,24 @@ class TasksCreate extends React.Component {
 
   render() {
     return (
-      <form className={s.myform} onSubmit={this.handleSubmit.bind(this)}>
-        <h1 style={{ color: "#363B45" }}>Create new task</h1>
+      <form className={s.myform} style={{height: "300px"}} onSubmit={this.handleSubmit.bind(this)}>
+        <h1 style={{ color: "#363B45" }}>Create new user_task</h1>
         <div>
           <input
-            id="taskName"
-            name="taskName"
-            placeholder="Enter taskName"
+            id="userId"
+            name="userId"
+            placeholder="Enter userId"
             type="text"
             onChange={this.handleChange.bind(this)}
           />
         </div>
 
         <div>
-          <textarea
+          <input
             className={s.text}
-            id="taskDescription"
-            name="taskDescription"
-            placeholder="Enter taskDescription"
-            type="text"
-            onChange={this.handleChange.bind(this)}
-          />
-        </div>
-
-        <div>
-          <input
-            id="project_id"
-            name="project_id"
-            placeholder="Enter projectid"
+            id="taskId"
+            name="taskId"
+            placeholder="Enter taskId"
             type="text"
             onChange={this.handleChange.bind(this)}
           />
@@ -99,4 +86,4 @@ class TasksCreate extends React.Component {
     );
   }
 }
-export default TasksCreate;
+export default UserTasksCreate;

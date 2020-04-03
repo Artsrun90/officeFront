@@ -24,23 +24,20 @@ class RegisterForm extends Component {
     console.log("includes:----",this.state.email.includes("@"))
     console.log("email:----",this.state.email.match(/[0-9]/g))
 
-    if(this.state.email.match(/[0-9]/g) === null || this.state.password.match(/[0-9]/g) === null) {
-      errorForm = "You have a some ERROR";
-    } else {          
     if (
       this.state.email === "name" ||
       this.state.email.length < 10 ||
-      this.state.email.match(/[0-9]/g).length === 0 ||
+      this.state.email.match(/[0-9]/g) === null ||
       !this.state.email.includes("@") ||
       this.state.password === "password" ||
       this.state.password.length < 6 ||
-      this.state.password.match(/[0-9]/g).length === 0      
+      this.state.password.match(/[0-9]/g) === null      
     ) {
       errorForm = "You have a some ERROR";
     } else if (this.state.count === 3) {
       err = "Cannot login at this time. Contact the System Administrator";
     }
-  }
+  
 
     if (errorForm) {
       this.setState({ errorForm });
@@ -91,8 +88,7 @@ class RegisterForm extends Component {
         .then(response =>{ 
             console.log(response)
             if(response.status === 201){ 
-            this.setState({chek:true})
-            console.log(this.state.chek)  
+            this.setState({chek:true}) 
             } else{
               this.setState({chek:false})
             } 

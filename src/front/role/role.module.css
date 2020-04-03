@@ -1,72 +1,90 @@
-.customers {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  .customers td, .customers th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  .customers tr:nth-child(even){background-color: #f2f2f2;}
-  
-  .customers tr:hover {background-color: #ddd;}
-  
-  .customers th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: rgb(96, 141, 209);
-    color: white;
-  }
-  .hidden {
-    visibility: hidden;
-  }
-
-
-  .myform input{
-	color: rgb(105, 105, 105);
-	width: 20%;
-	background-color: rgb(255, 255, 255);
+*{
+	transition: all 0.5s;
+}
+.myform input{
+	color: rgb(48, 48, 48);
+	width: 90%;
+	background-color: rgba(136, 135, 135, 0.226);
 	margin: 10px 2px;
 	padding: 10px 20px;
 	border:none;
-	box-shadow: 1px 1px 1px 1px rgba(5, 1, 1, 0.555);
+	box-shadow: 1px 1px 3px 2px rgb(172, 172, 172);
 }
-
-.myform input:hover{
-	box-shadow: 1px 1px 1px 1px #535353;
-}
-
+/* .myform input:hover{
+	box-shadow: 1px 1px 3px 5px #610301;
+} */
 .myform{
-	width: 800px;
-	height: 390px;
-	margin-left: 300px;
-	margin-top: 8px;
-	/* margin-left: auto; */
-	/* margin: 0 auto; */
-	background-color: #F2F2F2;
+	border-radius: 2px;
+	border-color: rgb(168, 168, 168);
+	border-style: solid;
+	border-width: 0.5px;
+	width: 400px;
+	height: 350px;
+	margin-left: 550px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	background-color: rgb(230, 230, 230);
 	padding: 40px;
-	color: #A22125;
 }
 .myform label{
-	color: rgb(114, 114, 114);
+	color: rgb(255, 255, 255);
 	display: block;
 }
 input[type="submit"]{
 	width: 200px;
-	background-color: rgb(27, 27, 27);
+	background-color: rgb(18, 158, 201);
 	font-weight: bold;
-	/* width: 100%; */
-	color: aliceblue;
-	/* box-shadow: 1px 1px 3px 2px #C91612; */
-	cursor: pointer;
+	width: 100%;
+	box-shadow: 1px 1px 3px 2px rgb(172, 172, 172);
 }
 input[type="submit"]:hover{
-	/* background-color:rgb(167, 159, 159); */
+	background-color:rgb(0, 81, 255);
 	color:white;
-	transform: scale(1.04);
+	transform: scale(1.02);
+	cursor: pointer;
+}
+input::placeholder{
+	color: rgb(160, 160, 160);
+}
+h1{
+    margin-top: auto;
+    color: black;
+}
+
+.roll {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.roll td, .roll th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.roll tr:nth-child(even){background-color: #f2f2f2;}
+
+.roll tr:hover {background-color: #ddd;}
+
+.roll th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: rgb(96, 141, 209);
+  color: white;
+}
+.hidden {
+  visibility: hidden;
+}
+
+.text{
+	color: rgb(105, 105, 105);
+	width: 90%;
+	background-color: rgba(136, 135, 135, 0.226);
+	margin: 10px 2px;
+	padding: 10px 20px;
+	border:none;
+	box-shadow: 1px 1px 3px 2px rgb(172, 172, 172);
 }
 
 .rolebutton{

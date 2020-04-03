@@ -1,12 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-import  s from '../style.module.css'
+import  s from './task.module.css'
 
 class TaskDelete extends React.Component {
 
     state = {      
         taskID:null,
-        chek: "",
         err:""       
     } 
 
@@ -26,38 +25,33 @@ class TaskDelete extends React.Component {
     handleSubmit = (event) => {
       event.preventDefault();
       this.setState({
-        chek: "",
-        err:""})
-        console.log(this.state.chek)    
-        console.log(this.state.err)    
+        err:""})    
       const form = event.target;
-        axios.delete(
-          `http://localhost:3001/tasks/${this.state.taskID}`) 
-          .then(response =>{ 
-            console.log(response)
-            if(response.status === 200){ 
-            this.setState({chek:true})
-            console.log(this.state.chek)  
-            } else{
-              this.setState({chek:false})
-            } 
-            })    
-           .then(() => {if(this.state.chek){
-            this.setState({err:"Created"})            
-          } else {
-            this.setState({err:"Not created"})
-          }})
-          .catch(this.setState({err:"Not created"}))        
+        // axios.delete(
+        //   `http://localhost:3001/tasks/${this.state.taskID}`)
+      let token = "Bearer " + localStorage.getItem("jwt")
+      axios({ method: 'delete', url: `http://localhost:3001/tasks/${this.state.taskID}`, headers: {'Authorization': token }})
+          .then(response => {
+            if(response.status === 200) this.setState({ err: "Deleteed" });         
+            })
+            .catch(error => {
+              if(error.response.status === 401){
+                this.setState({err: "You aren't authorized!"})
+              } else if (error.response.status === 403){
+                this.setState({err: "You don't have administrator rights!"})
+              } else if(error.response.status === 404){
+                this.setState({err: "Not found!"})
+              }
+          })        
         
         form.reset();       
       }
     
       render() {       
         return (
-          <form className={s.myform} onSubmit={this.handleSubmit.bind(this)}>
+          <form className={s.myform} style={{height: "200px"}} onSubmit={this.handleSubmit.bind(this)}>
             <h1 style={{color:"#363B45"}}>Delete task</h1>
             <div>
-            <label htmlFor="taskID">taskID</label>
             <input 
             id="taskID"
             name="taskID"                   
@@ -65,7 +59,7 @@ class TaskDelete extends React.Component {
             type="text"
             onChange={this.handleChange.bind(this)} />
             </div>
-            <p>{this.state.err}</p>
+            <p style={{color: "red"}}>{this.state.err}</p>
             <input 
                 type="submit"
                 value="Delete"

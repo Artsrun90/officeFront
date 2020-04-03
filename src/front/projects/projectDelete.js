@@ -1,64 +1,62 @@
 import React from "react";
 import axios from "axios";
-import s from "../style.module.css";
-import d from "./project.module.css";
+import s from "./project.module.css";
 
 class ProjectDelete extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+    state = {
       project: [],
-      pro: "",
+      projectID: "",
       err: ""
     };
-  }
+  
 
   handleChange = event => {
-    event.preventDefault();
-
-    const pro = event.target.value;
-    this.setState({ pro });
+    const projectID = event.target.value;
+    this.setState({ projectID });
   };
 
-  findProject = () => {
-    // this.setState({ err: "" });
-    // const form = event.target;
-    axios
-      .delete(`http://localhost:3001/projects/${this.state.pro}`)
+  findProject = (event) => {
+    event.preventDefault();
+      this.setState({
+        err:""})    
+    const form = event.target;
+    // axios.delete(`http://localhost:3001/projects/${this.state.pro}`)
+    let token = "Bearer " + localStorage.getItem("jwt")
+      axios({ method: 'delete', url: `http://localhost:3001/projects/${this.state.projectID}`, headers: {'Authorization': token }})
       .then(response => {
-        const project = response.data;
-        this.setState({ project });
-        // console.log(response);
-        if (response.status === 201) {
-          this.setState({ err: "Project is Deleted", pro: "" });
-        } else {
-          this.setState({ err: "Project is Not Deleted" });
-        }
+        if(response.status === 200) this.setState({ err: "Deleteed" });         
+        })
+      .catch(error => {
+          if(error.response.status === 401){
+            this.setState({err: "You aren't authorized!"})
+          } else if (error.response.status === 403){
+            this.setState({err: "You don't have administrator rights!"})
+          } else if(error.response.status === 404){
+            this.setState({err: "Not found!"})
+          }
       });
-    //   .catch(this.setState({ err: "Not Updated" }));
-    // this.state.pro.reset();
+
+      form.reset();
   };
 
   render() {
-    // console.log(this.state.project[0]);
     return (
-      <div style={{ marginLeft: "300px" }}>
-        <h2>Enter Project Id</h2>
-        <input
-          type="Text"
-          name="projectID"
-          onChange={this.handleChange.bind(this)}
-        />
-        <div>
-          <button className={d.projectbutton} onClick={this.findProject.bind(this)}>Delete</button>
-        </div>
-        <table className={s.project}>
-          {/* <tr>
-            <td>{this.state.project[0]}</td>
-          </tr> */}
-          <h3>{this.state.err}</h3>
-        </table>
-      </div>
+      <form className={s.myform} style={{height:"200px"}} onSubmit={this.findProject.bind(this)}>
+            <h1 style={{color:"#363B45"}}>Delete project</h1>
+            <div>
+            <input 
+            id="projectID"
+            name="taskID"                   
+            placeholder="Enter project ID"
+            type="text"
+            onChange={this.handleChange.bind(this)} />
+            </div>
+            <p style={{color:"#E10C0C"}}>{this.state.err}</p>
+            <input 
+                type="submit"
+                value="Delete"
+                />
+          </form>
     );
   }
 }

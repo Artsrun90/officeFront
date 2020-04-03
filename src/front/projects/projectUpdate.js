@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import s from "../style.module.css";
+import s from "./project.module.css";
 
 class ProjectUpdate extends React.Component {
   state = {
@@ -12,21 +12,21 @@ class ProjectUpdate extends React.Component {
     err: ""
   };
 
-  handleChange = e => {
-    const an = e.target.name;
-    const va = e.target.value;
-    switch (an) {
+  handleChange = event => {
+    const e = event.target.name;
+    const value = event.target.value;
+    switch (e) {
       case "id":
-        this.setState({ id: va });
+        this.setState({ id: value });
         break;
       case "name":
-        this.setState({ name: va });
+        this.setState({ name: value });
         break;
       case "description":
-        this.setState({ description: va });
+        this.setState({ description: value });
         break;
       case "userID":
-        this.setState({ userID: va });
+        this.setState({ userID: value });
         break;
 
       default:
@@ -42,22 +42,27 @@ class ProjectUpdate extends React.Component {
     });
     const form = event.target;
 
-    const project = {
+    const projects = {
       name: this.state.name,
       description: this.state.description,
       userID: this.state.userID
     };
-    axios
-      .patch(`http://localhost:3001/projects/${this.state.id}`, { project })
+    // axios.patch(`http://localhost:3001/projects/${this.state.id}`, { project })
+    let token = "Bearer " + localStorage.getItem("jwt")
+      axios({ method: 'patch', url: `http://localhost:3001/projects/${this.state.id}`, headers: {'Authorization': token }, data: { project: projects }})
       .then(response => {
-        // console.log(response);
-        if (response.status === 201) {
-          this.setState({ err: "Updated" });
-        } else {
-          this.setState({ err: "Not Updated" });
+        if(response.status === 200) this.setState({ err: "Updated" });
+      })
+      .catch(error => {
+        if(error.response.status === 401){
+          this.setState({err: "You aren't authorized!"})
+        } else if (error.response.status === 403){
+          this.setState({err: "You don't have administrator rights!"})
+        } else if(error.response.status === 404){
+          this.setState({err: "Not found!"})
         }
-      });
-    //   .catch(this.setState({ err: "Not Updated" }));
+    })   
+      
     form.reset();
   }
 
@@ -66,7 +71,6 @@ class ProjectUpdate extends React.Component {
       <form className={s.myform} onSubmit={this.handleSubmit.bind(this)}>
         <h1 style={{ color: "#363B45" }}>Create new Project</h1>
         <div>
-          <label htmlFor="id">Project ID</label>
           <input
             id="id"
             name="id"
@@ -76,7 +80,6 @@ class ProjectUpdate extends React.Component {
           />
         </div>
         <div>
-          <label htmlFor="name">Project Name</label>
           <input
             id="name"
             name="name"
@@ -87,7 +90,6 @@ class ProjectUpdate extends React.Component {
         </div>
 
         <div>
-          <label htmlFor="description">Project Description</label>
           <textarea
             className={s.text}
             id="description"
@@ -98,7 +100,6 @@ class ProjectUpdate extends React.Component {
           />
         </div>
         <div>
-          <label htmlFor="userID">User Id</label>
           <input
             id="userID"
             name="userID"
@@ -108,7 +109,7 @@ class ProjectUpdate extends React.Component {
           />
         </div>
 
-        <p>{this.state.err}</p>
+        <p style={{color:"red"}}>{this.state.err}</p>
         <input type="submit" value="Create" />
       </form>
     );

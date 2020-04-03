@@ -14,11 +14,9 @@ class RegisterForm extends Component {
   };
 
   handleChange = event => {
-    console.log("event:", event);
-    console.log("event.target.name:", event.target.name);
-    console.log("event.target.value:", event.target.value);
-    console.log(this.state.count);
-    console.log(this.state.email)
+    // console.log("event:", event);
+    // console.log("event.target.name:", event.target.name);
+    // console.log("event.target.value:", event.target.value);
 
     this.setState({
       [event.target.name]: event.target.value
@@ -33,18 +31,16 @@ class RegisterForm extends Component {
 
   hanleSubmit = event => {
     event.preventDefault();
-        const auth = {"email": this.state.email, "password": this.state.password, "userName": this.state.userName}
-        // const user = {"auth": {"email": this.state.email, "password": this.state.password, "userName": this.state.userName}}
-
+        const auth = {"email": this.state.email, "password": this.state.password}
+        // , "userName": this.state.userName
         axios.post(`http://localhost:3001/user_token`, {auth})
         .then(response =>{ 
           localStorage.setItem("jwt", response.data.jwt);
           this.props.history.push("/");
           console.log("jwt",response.data.jwt)
         })
-          .catch(this.setState({err:"You have some error"}))
-          console.log("props",this.props)
-          console.log("username",this.state.userName);    
+          .catch(error => {error.response.status === 404 ? this.setState({err: "You have some error"}): this.setState({err: ""})})
+         
   };
 
   componentWillUnmount(){
@@ -73,23 +69,21 @@ class RegisterForm extends Component {
             onChange={this.handleChange.bind(this)}
           />
         </div>
-        <div>
+        {/* <div>
           <input
             type="text"
             name="userName"
             placeholder="Enter your Name"
-            onChange={this.incrementCount.bind(this)}
+            onChange={this.handleChange.bind(this)}
           />
         </div>
-       
+        */}
         <div>
-          <a href="/">
           <input
             type="submit"
             value="Sign In"
             onClick={this.incrementCount.bind(this)}
           />
-          </a>
         </div>
       </form>
     );

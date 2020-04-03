@@ -3,8 +3,6 @@ import axios from 'axios';
 import UsersPagin from "./userspagin";
 import Pagination from '../tasks/pagination';
 
-
-
 class UsersGetAll extends React.Component {
   constructor(props){
     super(props);
@@ -23,16 +21,15 @@ class UsersGetAll extends React.Component {
             console.log("status:", res.status)
             console.log("res",res)
             const users = res.data;
-            this.setState({ users });
-            
+            this.setState({ users });            
             
           })
           .catch(error => {
             console.log("error:",error.response.status)
             if(error.response.status === 401){
-              this.setState({error: "You are not authorized!"})
+              this.setState({error: "You aren't authorized!"})
             } else if (error.response.status === 403){
-              this.setState({error: "You do not have administrator rights!"})
+              this.setState({error: "You don't have administrator rights!"})
             }
         });
           }

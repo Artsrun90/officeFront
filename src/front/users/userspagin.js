@@ -1,12 +1,12 @@
 import React , {Component} from 'react';
-import  s from './userl.module.css';
+import  s from './user.module.css';
 
 class TasksPagin extends Component {        
 
     render() {        
         return (
             <div style={{marginLeft:"220px"}}>
-            <table className = {s.customers} > 
+            <table className = {s.user} > 
               <tr >
               <th>User name</th>
               <th>Email</th>
